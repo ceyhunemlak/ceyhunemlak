@@ -42,7 +42,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center bg-[#000000]">
         <div className="flex flex-col items-center">
           <Image 
             src="/images/SİYAH.png" 
@@ -57,23 +57,37 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col relative overflow-hidden bg-white text-gray-800">
+    <main className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-b from-gray-900 to-black text-white">
+      {/* Arkaplan overlay */}
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
+      
+      {/* Arkaplan görsel (isteğe bağlı) */}
+      <div className="absolute inset-0 z-[-1] bg-gradient-to-b from-gray-900 via-black to-gray-900"></div>
+
+      {/* Header */}
+      <header className="relative z-10 p-6 flex justify-between items-center">
+        <div className="text-[#ffbf00] text-2xl font-bold">
+          <Image 
+            src="/images/BEYAZ.png" 
+            alt="Ceyhun Emlak Logo" 
+            width={150} 
+            height={45} 
+            priority
+          />
+        </div>
+        <a 
+          href="#contact" 
+          className="bg-[#ffbf00] text-black px-6 py-2 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+        >
+          İletişim
+        </a>
+      </header>
+
       {/* Ana içerik */}
       <div className="flex-1 flex flex-col items-center justify-center relative z-10 px-4 py-10">
         <div className="container mx-auto max-w-4xl flex flex-col items-center">
-          {/* Logo */}
-          <div className="mb-8">
-            <Image 
-              src="/images/SİYAH.png" 
-              alt="Ceyhun Emlak Logo" 
-              width={200} 
-              height={60} 
-              priority
-            />
-          </div>
-          
           {/* Ana başlık */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-center text-gray-800 animate-fadeIn">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-center text-white animate-fadeIn">
             ÇOK YAKINDA
           </h1>
           <h2 className="text-xl md:text-2xl font-medium mb-12 text-[#ffbf00] text-center animate-fadeIn-delay">
@@ -84,19 +98,19 @@ export default function Home() {
           <div className="flex justify-center items-center space-x-4 md:space-x-8 mb-16 animate-fadeIn-delay-2">
             <div className="flex flex-col items-center">
               <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.days}</span>
-              <span className="text-sm text-gray-600 mt-1">Gün</span>
+              <span className="text-sm text-gray-300 mt-1">Gün</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.hours}</span>
-              <span className="text-sm text-gray-600 mt-1">Saat</span>
+              <span className="text-sm text-gray-300 mt-1">Saat</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.minutes}</span>
-              <span className="text-sm text-gray-600 mt-1">Dakika</span>
+              <span className="text-sm text-gray-300 mt-1">Dakika</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.seconds}</span>
-              <span className="text-sm text-gray-600 mt-1">Saniye</span>
+              <span className="text-sm text-gray-300 mt-1">Saniye</span>
             </div>
           </div>
 
@@ -110,34 +124,34 @@ export default function Home() {
                 href="https://ceyhun.sahibinden.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center bg-gray-100 px-5 py-3 rounded-lg hover:bg-gray-200 transition-all duration-300"
+                className="flex items-center bg-white/10 backdrop-blur-sm px-5 py-3 rounded-lg hover:bg-white/20 transition-all duration-300"
               >
                 <Image src="/images/sahibinden.png" alt="Sahibinden.com" width={24} height={24} className="mr-2" />
-                <span className="text-gray-800">Sahibinden.com</span>
+                <span>Sahibinden.com</span>
               </a>
               <a 
                 href="https://www.hepsiemlak.com/emlak-ofisi/ceyhun-emlak-tokat-70414" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center bg-gray-100 px-5 py-3 rounded-lg hover:bg-gray-200 transition-all duration-300"
+                className="flex items-center bg-white/10 backdrop-blur-sm px-5 py-3 rounded-lg hover:bg-white/20 transition-all duration-300"
               >
                 <Image src="/images/hepsiemlak.png" alt="Hepsiemlak.com" width={24} height={24} className="mr-2" />
-                <span className="text-gray-800">Hepsiemlak.com</span>
+                <span>Hepsiemlak.com</span>
               </a>
               <a 
                 href="https://www.emlakjet.com/emlak-ofisleri-detay/ceyhun-emlak-tokat-366865/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center bg-gray-100 px-5 py-3 rounded-lg hover:bg-gray-200 transition-all duration-300"
+                className="flex items-center bg-white/10 backdrop-blur-sm px-5 py-3 rounded-lg hover:bg-white/20 transition-all duration-300"
               >
                 <Image src="/images/emlakjet.png" alt="Emlakjet.com" width={24} height={24} className="mr-2" />
-                <span className="text-gray-800">Emlakjet.com</span>
+                <span>Emlakjet.com</span>
               </a>
             </div>
           </div>
 
           {/* İletişim Bilgileri */}
-          <div id="contact" className="w-full max-w-2xl mx-auto bg-gray-100 p-6 rounded-xl shadow-lg mb-8">
+          <div id="contact" className="w-full max-w-2xl mx-auto bg-black/40 backdrop-blur-sm p-6 rounded-xl shadow-lg mb-8">
             <h3 className="text-center text-xl font-medium mb-6 text-[#ffbf00]">
               İletişim Bilgileri
             </h3>
@@ -148,8 +162,8 @@ export default function Home() {
                   <path fillRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clipRule="evenodd" />
                 </svg>
                 <div>
-                  <p className="text-sm text-gray-800">Cep: 0 (532) 385 04 20</p>
-                  <p className="text-sm text-gray-800">Sabit: 0 (356) 228 0 444</p>
+                  <p className="text-sm">Cep: 0 (532) 385 04 20</p>
+                  <p className="text-sm">Sabit: 0 (356) 228 0 444</p>
                 </div>
               </div>
               
@@ -159,8 +173,8 @@ export default function Home() {
                   <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
                 </svg>
                 <div>
-                  <p className="text-sm text-gray-800">ceyhunemlak@hotmail.com</p>
-                  <p className="text-sm text-gray-800">ceyhunemlak60@gmail.com</p>
+                  <p className="text-sm">ceyhunemlak@hotmail.com</p>
+                  <p className="text-sm">ceyhunemlak60@gmail.com</p>
                 </div>
               </div>
               
@@ -169,8 +183,8 @@ export default function Home() {
                   <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
                 </svg>
                 <div>
-                  <p className="text-sm mb-2 text-gray-800">Çarşı Ofis: Alipaşa Mah. Gazipaşa Cad. No:3/A Ceysuit Tokat/Merkez</p>
-                  <p className="text-sm text-gray-800">Karşıyaka Ofis: Altıyüzevler Mah. Vali Ayhan Çevik Bulv. Yunus Emre Sit. A Blok Tokat/Merkez</p>
+                  <p className="text-sm mb-2">Çarşı Ofis: Alipaşa Mah. Gazipaşa Cad. No:3/A Ceysuit Tokat/Merkez</p>
+                  <p className="text-sm">Karşıyaka Ofis: Altıyüzevler Mah. Vali Ayhan Çevik Bulv. Yunus Emre Sit. A Blok Tokat/Merkez</p>
                 </div>
               </div>
             </div>
@@ -211,7 +225,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 p-4 text-center text-sm text-gray-600">
+      <footer className="relative z-10 p-4 text-center text-sm text-gray-400">
         <p>© {new Date().getFullYear()} Ceyhun Emlak. Tüm hakları saklıdır.</p>
         <p className="text-xs mt-1">Tokat'ın Güvenilir Gayrimenkul Danışmanı</p>
       </footer>
