@@ -2,18 +2,13 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Countdown from 'react-countdown';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [countdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
 
-  // Geri sayım için hedef tarih (3 ay sonrası)
-  const targetDate = new Date("2025-07-08T12:00:00");
+  // Geri sayım için hedef tarih - 8 Temmuz 2025 saat 12:00
+  const targetDate = new Date("2025-07-08T12:00:00+03:00");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,21 +18,43 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
-      
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-      
-      setCountdown({ days, hours, minutes, seconds });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [targetDate]);
+  // Sayaç renderer bileşeni
+  const countdownRenderer = ({ days, hours, minutes, seconds, completed }: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+  }) => {
+    if (completed) {
+      return (
+        <div className="text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#ffbf00]">Sitemiz Yayında!</h2>
+        </div>
+      );
+    } else {
+      return (
+        <div className="flex justify-center items-center space-x-4 md:space-x-8 mb-16 animate-fadeIn-delay-2">
+          <div className="flex flex-col items-center">
+            <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{days}</span>
+            <span className="text-sm text-gray-300 mt-1">Gün</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{hours}</span>
+            <span className="text-sm text-gray-300 mt-1">Saat</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{minutes}</span>
+            <span className="text-sm text-gray-300 mt-1">Dakika</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{seconds}</span>
+            <span className="text-sm text-gray-300 mt-1">Saniye</span>
+          </div>
+        </div>
+      );
+    }
+  };
 
   if (isLoading) {
     return (
@@ -93,25 +110,11 @@ export default function Home() {
             Yenilenmiş Yüzüyle Hizmette!
           </h2>
 
-          {/* Geri sayım */}
-          <div className="flex justify-center items-center space-x-4 md:space-x-8 mb-16 animate-fadeIn-delay-2">
-            <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.days}</span>
-              <span className="text-sm text-gray-300 mt-1">Gün</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.hours}</span>
-              <span className="text-sm text-gray-300 mt-1">Saat</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.minutes}</span>
-              <span className="text-sm text-gray-300 mt-1">Dakika</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold text-[#ffbf00]">{countdown.seconds}</span>
-              <span className="text-sm text-gray-300 mt-1">Saniye</span>
-            </div>
-          </div>
+          {/* Geri sayım - React Countdown ile */}
+          <Countdown 
+            date={targetDate} 
+            renderer={countdownRenderer}
+          />
 
           {/* İlan Siteleri */}
           <div className="mb-12 w-full">
