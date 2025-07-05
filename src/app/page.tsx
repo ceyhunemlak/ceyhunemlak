@@ -38,7 +38,7 @@ export default function Home() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [targetDate]);
 
   if (isLoading) {
     return (
@@ -227,7 +227,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="relative z-10 p-4 text-center text-sm text-gray-400">
         <p>© {new Date().getFullYear()} Ceyhun Emlak. Tüm hakları saklıdır.</p>
-        <p className="text-xs mt-1">Tokat'ın Güvenilir Gayrimenkul Danışmanı</p>
+        <p className="text-xs mt-1">Tokat&apos;ın Güvenilir Gayrimenkul Danışmanı</p>
       </footer>
     </main>
   );
