@@ -13,8 +13,7 @@ export default function Home() {
   });
 
   // Geri sayım için hedef tarih (3 ay sonrası)
-  const targetDate = new Date();
-  targetDate.setMonth(targetDate.getMonth() + 3);
+  const targetDate = new Date("2025-07-08T12:00:00");
 
   useEffect(() => {
     const timer = setTimeout(() => {
